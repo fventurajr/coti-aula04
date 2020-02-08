@@ -357,3 +357,31 @@ public class Pessoa {
 	
 	
 }
+## Programação funcional
+package funcional;
+
+public class MainFunctional {
+
+	public static Exception e = new IllegalArgumentException("Não deve ser divisível por 0");
+	public static ICalculoLambda soma = (a, b) -> (a + b);
+	public static ICalculoLambda subtracao = (a, b) -> (a - b);
+	public static ICalculoLambda multiplicacao = (a, b) -> (a * b);
+	public static ICalculoLambda divisao = (a, b) -> (b != 0. ? (a / b) : e);
+
+	public static void main(String[] args) {
+
+		MainFunctional m = new MainFunctional();
+		System.out.println( m.multiplicacao.operacao(2., 3.));
+		System.out.println( m.divisao.operacao(2., 0.));
+	}
+}
+
+package funcional;
+
+@FunctionalInterface
+public interface ICalculoLambda {
+
+	public Object operacao(Double n1, Double n2);
+	
+	
+}
