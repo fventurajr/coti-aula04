@@ -448,3 +448,208 @@ $$
 delimiter ;
 
 call incluir3('Jéssica', 'jess@frg.com.br', '5557777');
+## Relacionamentos
+package entity;
+
+import com.google.gson.Gson;
+
+public class Produto {
+
+	private Integer idProduto;
+	private String nome;
+	private Double preco;
+    private transient String json;   
+	 
+ 
+ 	 
+	public Produto() {
+	}
+
+	
+	
+	public Produto(Integer idProduto, String nome, Double preco ) {
+		super();
+		this.idProduto = idProduto;
+		this.nome = nome;
+		this.preco = preco;
+	}
+
+
+ 
+
+	@Override
+	public String toString() {
+		return "Produto [idProduto=" + idProduto + ", nome=" + nome + ", preco=" + preco + "]";
+	}
+
+
+	 public Produto afterGerarJson() {
+		 this.json= new Gson().toJson(this); 
+	   return this;
+	 }
+	
+
+	public Integer getIdProduto() {
+		return idProduto;
+	}
+
+	public void setIdProduto(Integer idProduto) {
+		this.idProduto = idProduto;
+	}
+
+	public String getNome() {
+		return nome;
+	}
+
+	public void setNome(String nome) {
+		this.nome = nome;
+	}
+
+	public Double getPreco() {
+		return preco;
+	}
+
+	public void setPreco(Double preco) {
+		this.preco = preco;
+	}
+
+
+
+	public String getJson() {
+		return json;
+	}
+
+
+
+	public void setJson(String json) {
+		this.json = json;
+	}
+
+	
+	public static void main(String[] args) {
+		Produto p = new Produto(10,"havaianas",20.);
+		  p.afterGerarJson();
+		System.out.println(p.getJson()); 
+		
+				
+				
+	}
+
+ 
+
+}
+
+
+
+
+
+
+
+package entity;
+
+import com.google.gson.Gson;
+
+public class ItemPedido {
+
+	private Integer idPedido;
+	private Integer quantidade;
+	private Produto produto;
+	private Double subTotal = 0.;
+	
+	private transient String jsonItem;
+	
+
+	public ItemPedido() {
+	}
+
+	public ItemPedido(Produto produto) {
+		this.produto = produto;
+	}
+
+	public ItemPedido(Integer idPedido, Integer quantidade, Produto produto) {
+		this.idPedido = idPedido;
+		this.quantidade = quantidade;
+		this.produto = produto;
+	}
+
+	public ItemPedido afterGerarJsonItem() {
+		 this.jsonItem = new Gson().toJson(this);
+		 return this;
+	}
+	
+	public void gerarSubTotal() {
+		this.subTotal = (this.quantidade * produto.getPreco());
+	}
+	
+	@Override
+	public String toString() {
+		return "ItemPedido [idPedido=" + idPedido + ", quantidade=" + quantidade + ", produto=" + produto + "]";
+	}
+
+	public Integer getIdPedido() {
+		return idPedido;
+	}
+
+	public void setIdPedido(Integer idPedido) {
+		this.idPedido = idPedido;
+	}
+
+	public Integer getQuantidade() {
+		return quantidade;
+	}
+
+	public void setQuantidade(Integer quantidade) {
+		this.quantidade = quantidade;
+	}
+
+	public Produto getProduto() {
+		return produto;
+	}
+
+	public void setProduto(Produto produto) {
+		this.produto = produto;
+	}
+
+	public Double getSubTotal() {
+		return subTotal;
+	}
+
+	public void setSubTotal(Double subTotal) {
+		this.subTotal = subTotal;
+	}
+
+	public String getJsonItem() {
+		return jsonItem;
+	}
+
+	public void setJsonItem(String jsonItem) {
+		this.jsonItem = jsonItem;
+	}
+
+	public static void main(String[] args) {
+		Produto p = new Produto(10,"hiphone", 1000.);
+		ItemPedido item = new ItemPedido(100, 2, p);
+		 
+		 item.gerarSubTotal();
+		 item.afterGerarJsonItem();
+		
+		 System.out.println(item.getJsonItem());
+		  
+		
+		
+		
+		
+		
+		 
+		
+	}
+	
+	
+}
+Venda Tem Lista de Item
+
+
+
+
+
+
