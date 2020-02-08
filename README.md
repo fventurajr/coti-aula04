@@ -426,3 +426,25 @@ public class MainFunctional {
             
 	
 }
+## usando o banco de dados com mySQL e criando uma procedure
+create database BDOSCARGAB;
+
+use BDOSCARGAB;
+
+create table usuario( id int primary key auto_increment,
+nome varchar(50), email varchar(50) unique, tlefone varchar(20));
+
+insert into usuario values (null, "Fernando", "fventurajr@gmail.com", "999998888");
+
+
+delimiter $$
+create procedure incluir3
+	(vnome varchar(35), vmail varchar(35), vtelefone varchar(35))
+begin
+	insert into usuario values (null, vnome, vmail, vtelefone);
+	
+end 
+$$
+delimiter ;
+
+call incluir3('Jéssica', 'jess@frg.com.br', '5557777');
