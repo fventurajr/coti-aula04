@@ -358,6 +358,8 @@ public class Pessoa {
 	
 }
 ## Programação funcional
+
+My Version 
 package funcional;
 
 public class MainFunctional {
@@ -383,5 +385,44 @@ public interface ICalculoLambda {
 
 	public Object operacao(Double n1, Double n2);
 	
+	
+}
+Teacher's version
+
+package funcional;
+
+import java.util.OptionalDouble;
+
+public class MainFunctional {
+
+	
+	 public static ICalculoLambda   soma =(a,b)->(a + b);
+	 public static ICalculoLambda   subtracao =(a,b)->(a - b);
+	 public static ICalculoLambda   multiplicacao =(a,b)->(a * b);
+	 public static ICalculoLambda   divisao = (a,b)->
+	    {try {      
+	              return (a/b);
+                        }catch(ArithmeticException ex) {
+                   return -(b+1);
+                 }
+      };
+    public static void main(String[] args) {
+		
+    	try {
+    	System.out.println( 
+    	         MainFunctional.soma.operacao(10, 20)
+    		);
+    		
+    	System.out.println( 
+    	        MainFunctional.divisao.operacao(10,0)
+    			);
+    	}catch(Exception ex) {
+    		System.out.println("Erro :" +ex.getMessage());
+    		ex.printStackTrace();
+    	}
+    	
+	}           
+            
+            
 	
 }
